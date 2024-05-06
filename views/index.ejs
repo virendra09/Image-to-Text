@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS styles -->
+    <style>
+        /* Add your CSS styles here */
+        body {
+            background-color: #ffa3df;
+            background-image: url("https://www.transparenttextures.com/patterns/arabesque.png");
+            font-family: Arial, sans-serif;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        h1{
+            font-weight: bold;
+        }
+       
+        textarea {
+            align-self: center;
+            width: 90%;
+            height: 500px; /* Adjust the height as needed */
+            padding: 10px;
+            box-sizing: border-box;
+            margin-top: 20px;
+            margin-left: 40px;
+
+            background-color: #9ee693;
+            background-image: url("https://www.transparenttextures.com/patterns/fake-luxury.png");
+        }
+    </style>
+</head>
+<body>
+    <!-- Form for uploading image -->
+    <form action="/extracttextfromimage" method="post" enctype="multipart/form-data">
+        <label for="file"><h3>Upload Image File:</h3></label>
+        <input type="file" name="file" accept="image/*" required >
+        <button>Extract Text From Image</button>
+        <h2>Extract the Text from Images</h2>
+    </form>
+
+    <!-- Textarea for displaying extracted text -->
+    <textarea id="extractedText" cols="90" rows="90">
+        <!-- Insert the extracted text from the server-side -->
+        <%=data%>
+    </textarea>
+    
+
+    <!-- JavaScript for trimming text -->
+    <script>
+        // Trim the first two lines and the last three lines of the extracted text string
+        document.addEventListener("DOMContentLoaded", function() {
+            var extractedText = document.getElementById("extractedText").value;
+            var lines = extractedText.split('\n');
+            var trimmedLines = lines.slice(3, -5);
+            var trimmedText = trimmedLines.join('\n');
+            document.getElementById("extractedText").value = trimmedText;
+        });
+    </script>
+
+</body>
+</html>
